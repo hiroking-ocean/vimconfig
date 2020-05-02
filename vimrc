@@ -10,8 +10,9 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin '[Github Author}/{Github repo}' の形式で記入
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-jp/vimdoc-ja'
-"Plugin 'scrooloose/nerdtree'
 Plugin 'jacoborus/tender.vim'
+Plugin 'preservim/nerdtree'
+
 
 "導入するには:PluginInstall
 
@@ -54,11 +55,25 @@ set laststatus=2
 "Tabキーで保管のウィンドウを表示
 set wildmenu
 
-"lucario.vimの設定（vimのカラー設定)
-"syntax enable
 "set number
 colorscheme tender
 
 "ヘルプの日本語化
 set helplang=ja
 
+"マウスの有効化
+if has('mouse')
+	set mouse=a
+	if has('mouse_sgr')
+		set ttymouse=sgr
+	elseif v:version > 703 || v:version is 703 && has('patch632')
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	endif
+endif
+
+
+"キーマップ
+"ナードツリーのキーマップ
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
